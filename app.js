@@ -2,10 +2,20 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 //routes
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+
+mongoose.connect(
+    'mongodb+srv://dnewEXPLORE22:' + 
+    process.env.MONGODB_PASSWORD + 
+    '@restful-api-node-demo.f08wc7e.mongodb.net/?retryWrites=true&w=majority', 
+    {
+        useMongoClient: true
+    }
+);
 
 //middleware
 app.use(morgan('dev'));
